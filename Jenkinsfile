@@ -2,7 +2,7 @@ pipeline {
   environment {
     registry = 'kal1bur/project3'
     registryCredentials = 'docker'
-    cluster_name = 'teamDC-eksCluster'
+    cluster_name = 'arn:aws:eks:us-east-1:782863115905:cluster/teamDC-eksCluster'
     namespace = 'default'
   }
   agent {

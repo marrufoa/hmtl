@@ -8,7 +8,7 @@ pipeline {
   stages {
     stage('Git') {
       steps {
-        git(url: 'https://github.com/marrufoa/project3.git', branch: 'main')
+        git(url: 'https://github.com/Destiny-s-Child/hmtl.git', branch: 'main')
       }
     }
 

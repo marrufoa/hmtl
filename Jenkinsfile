@@ -1,4 +1,10 @@
 pipeline {
+  environment {
+    registry = 'kal1bur/project3'
+    registryCredentials = 'docker'
+    cluster_name = 'teamDC-eksCluster'
+    namespace = 'default'
+  }
   agent {
     node {
       label 'docker'
@@ -14,21 +20,37 @@ pipeline {
 
     stage('Build') {
       steps {
-        sh 'docker build -t kal1bur/project3 .'
-      }
-    }
-
-    stage('Docker Login') {
-      steps {
-        sh 'docker login -u kal1bur -p dckr_pat_DASZeW9LwGJhy0nqeeQtHLUekRI'
+        script {
+          dockerImage = docker.build(registry)
+        }
       }
     }
 
     stage('Docker Push') {
       steps {
-        sh 'docker push kal1bur/project3'
+        script {
+          docker.withRegistry('', registryCredentials) {
+            dockerImage.push()
+          }
+        }
       }
     }
 
+    stage('Kubernetes') {
+      steps {
+        withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'AWS', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
+          sh "aws eks update-kubeconfig --region us-east-1 --name ${cluster_name}"
+          script{
+            try{
+              sh "kubectl create namespace ${namespace}"
+            } catch (Exception e) {
+              echo "Exception handled"
+            }
+          } 
+          sh "kubectl apply -f deployment.yaml -n ${namespace}"
+          sh "kubectl -n ${namespace} rollout restart deployment flaskcontainer"
+        }
+      }
+    }
   }
 }

@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <script>
-      const URL = "https://jsonplaceholder.typicode.com/posts";
+    <!-- <script>
+      const URL =
+        "https://jpcq80x6z1.execute-api.us-east-1.amazonaws.com/staging";
       async function makeAPICall() {
         const result = await fetch(URL);
         if (!result.ok) {
@@ -10,17 +11,91 @@
         }
         result.json().then((data) => {
           data.forEach((user) => {
-            const markup = `<li>${user.title}</li>`;
-            document
-              .querySelector(".test")
-              .insertAdjacentHTML("beforeend", markup);
+            const markup = `<li>${data[0][0].realfeel_temperature_imperial}</li>`;
+            console.log(markup);
           });
+          document
+            .querySelector(".test1")
+            .insertAdjacentHTML(
+              "afterbegin",
+              data[0][0]["realfeel_temperature_imperial"]
+            );
+          document
+            .querySelector(".test2")
+            .insertAdjacentHTML(
+              "afterbegin",
+              data[1][0]["realfeel_temperature_imperial"]
+            );
+          document
+            .querySelector(".test3")
+            .insertAdjacentHTML(
+              "afterbegin",
+              data[2][0]["realfeel_temperature_imperial"]
+            );
+          document
+            .querySelector(".test4")
+            .insertAdjacentHTML(
+              "afterbegin",
+              data[3][0]["realfeel_temperature_imperial"]
+            );
+          document
+            .querySelector(".test5")
+            .insertAdjacentHTML(
+              "afterbegin",
+              data[4][0]["realfeel_temperature_imperial"]
+            );
+          document
+            .querySelector(".test6")
+            .insertAdjacentHTML(
+              "afterbegin",
+              data[5][0]["realfeel_temperature_imperial"]
+            );
+          document
+            .querySelector(".test7")
+            .insertAdjacentHTML(
+              "afterbegin",
+              data[1][0]["temperature_imperial"]
+            );
+          document
+            .querySelector(".test8")
+            .insertAdjacentHTML(
+              "afterbegin",
+              data[2][0]["temperature_imperial"]
+            );
+          document
+            .querySelector(".test9")
+            .insertAdjacentHTML(
+              "afterbegin",
+              data[3][0]["temperature_imperial"]
+            );
+          document
+            .querySelector(".test10")
+            .insertAdjacentHTML(
+              "afterbegin",
+              data[4][0]["temperature_imperial"]
+            );
+          document
+            .querySelector(".test11")
+            .insertAdjacentHTML(
+              "afterbegin",
+              data[5][0]["temperature_imperial"]
+            );
+          document
+            .querySelector(".direction")
+            .insertAdjacentHTML(
+              "afterend",
+              data[0][0]["wind_direction_english"]
+            );
+          document
+            .querySelector(".wind")
+            .insertAdjacentHTML("afterend", data[0][0]["wind_speed_imperial"]);
           console.log(data);
         });
       }
 
       makeAPICall();
-    </script>
+    </script> -->
+    <!-- antartica, atlanta, new jersy, philipines, savannah, seattle -->
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta
@@ -107,48 +182,56 @@
               </div>
               <!-- .forecast-header -->
               <div class="forecast-content">
-                <div class="location">Atlanta</div>
+                <div class="location">Antartica</div>
                 <div class="degree">
-                  <div class="1h num">_High1_<sup>o</sup>F</div>
-                  <small class="1l">_low1_<sup>o</sup></small>
-                  <div class="forecast-icon">
-                    <img src="images/icons/icon-1.svg" alt="" width="90" />
-                  </div>
+                  <div class="1h num test1"><sup>o</sup>F</div>
+                  <!-- <small class="1l"><sup>o</sup></small> -->
                 </div>
-                <span><img src="images/icon-umberella.png" alt="" />20%</span>
+
                 <!--chance of rain-->
-                <span><img src="images/icon-wind.png" alt="" />18km/h</span>
+                <span
+                  ><img src="images/icon-wind.png" alt="" class="wind" />
+                  mph</span
+                >
                 <!--wind speed-->
-                <span><img src="images/icon-compass.png" alt="" />East</span
+                <span
+                  ><img
+                    src="images/icon-compass.png"
+                    alt=""
+                    class="direction" /></span
                 ><!--wind direction-->
               </div>
             </div>
             <div class="forecast">
               <div class="forecast-header">
-                <div class="day">Seattle</div>
+                <div class="day">Atlanta</div>
               </div>
               <!-- .forecast-header -->
               <div class="forecast-content">
-                <div class="forecast-icon">
-                  <img src="images/icons/icon-3.svg" alt="" width="48" />
-                </div>
-                <div class="2h degree">_High2_<sup>o</sup>F</div>
+                <div class="2h degree test2"><sup>o</sup>F</div>
                 <!--temp high-->
-                <small class="2l">_low2_<sup>o</sup></small>
+                <small class="test7"><sup>o</sup></small>
                 <!--temp low-->
               </div>
             </div>
             <div class="forecast">
               <div class="forecast-header">
-                <div class="day">Pillipines</div>
+                <div class="day">New Jersey</div>
               </div>
               <!-- .forecast-header -->
               <div class="forecast-content">
-                <div class="forecast-icon">
-                  <img src="images/icons/icon-5.svg" alt="" width="48" />
-                </div>
-                <div class="3h degree">_High3_<sup>o</sup>F</div>
-                <small class="3l">_low3_<sup>o</sup></small>
+                <div class="3h degree test3"><sup>o</sup>F</div>
+                <small class="test8"><sup>o</sup></small>
+              </div>
+            </div>
+            <div class="forecast">
+              <div class="forecast-header">
+                <div class="day">Phillipines</div>
+              </div>
+              <!-- .forecast-header -->
+              <div class="forecast-content">
+                <div class="4h degree test4"><sup>o</sup>F</div>
+                <small class="test9"><sup>o</sup></small>
               </div>
             </div>
             <div class="forecast">
@@ -157,37 +240,18 @@
               </div>
               <!-- .forecast-header -->
               <div class="forecast-content">
-                <div class="forecast-icon">
-                  <img src="images/icons/icon-7.svg" alt="" width="48" />
-                </div>
-                <div class="4h degree">_High4_<sup>o</sup>F</div>
-                <small class="4l">_low4_<sup>o</sup></small>
+                <div class="5h degree test5"><sup>o</sup>F</div>
+                <small class="test10"><sup>o</sup></small>
               </div>
             </div>
             <div class="forecast">
               <div class="forecast-header">
-                <div class="day">Conniticite</div>
+                <div class="day">Seattle</div>
               </div>
               <!-- .forecast-header -->
               <div class="forecast-content">
-                <div class="forecast-icon">
-                  <img src="images/icons/icon-12.svg" alt="" width="48" />
-                </div>
-                <div class="5h degree">_High5_<sup>o</sup>F</div>
-                <small class="5l">_low5_<sup>o</sup></small>
-              </div>
-            </div>
-            <div class="forecast">
-              <div class="forecast-header">
-                <div class="day">New York</div>
-              </div>
-              <!-- .forecast-header -->
-              <div class="forecast-content">
-                <div class="forecast-icon">
-                  <img src="images/icons/icon-13.svg" alt="" width="48" />
-                </div>
-                <div class="6h degree">_High6_<sup>o</sup>F</div>
-                <small class="6l">_low6_<sup>o</sup></small>
+                <div class="6h degree test6"><sup>o</sup>F</div>
+                <small class="test11"><sup>o</sup></small>
               </div>
             </div>
           </div>
@@ -214,9 +278,6 @@
               </div>
             </div>
           </div>
-
-          <h1>title:</h1>
-          <ul class="test"></ul>
 
           <p class="colophon">
             Copyright 2023 DestinyChild. All rights reserved

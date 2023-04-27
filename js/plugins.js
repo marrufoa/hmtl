@@ -2137,7 +2137,7 @@
         f
       );
     })());
-}.call(this));
+}).call(this);
 
 /* Owl Carousel 2 */
 !(function (a, b, c, d) {
@@ -7640,3 +7640,76 @@ window.jQuery &&
     });
   });
 })(jQuery);
+const URL = "https://jpcq80x6z1.execute-api.us-east-1.amazonaws.com/staging";
+async function makeAPICall() {
+  const result = await fetch(URL);
+  if (!result.ok) {
+    throw new Error(`Failed to fetch posts: ${result.status}`);
+  }
+  result.json().then((data) => {
+    data.forEach((user) => {
+      const markup = `<li>${data[0][0].realfeel_temperature_imperial}</li>`;
+      console.log(markup);
+    });
+    document
+      .querySelector(".test1")
+      .insertAdjacentHTML(
+        "afterbegin",
+        data[0][0]["realfeel_temperature_imperial"]
+      );
+    document
+      .querySelector(".test2")
+      .insertAdjacentHTML(
+        "afterbegin",
+        data[1][0]["realfeel_temperature_imperial"]
+      );
+    document
+      .querySelector(".test3")
+      .insertAdjacentHTML(
+        "afterbegin",
+        data[2][0]["realfeel_temperature_imperial"]
+      );
+    document
+      .querySelector(".test4")
+      .insertAdjacentHTML(
+        "afterbegin",
+        data[3][0]["realfeel_temperature_imperial"]
+      );
+    document
+      .querySelector(".test5")
+      .insertAdjacentHTML(
+        "afterbegin",
+        data[4][0]["realfeel_temperature_imperial"]
+      );
+    document
+      .querySelector(".test6")
+      .insertAdjacentHTML(
+        "afterbegin",
+        data[5][0]["realfeel_temperature_imperial"]
+      );
+    document
+      .querySelector(".test7")
+      .insertAdjacentHTML("afterbegin", data[1][0]["temperature_imperial"]);
+    document
+      .querySelector(".test8")
+      .insertAdjacentHTML("afterbegin", data[2][0]["temperature_imperial"]);
+    document
+      .querySelector(".test9")
+      .insertAdjacentHTML("afterbegin", data[3][0]["temperature_imperial"]);
+    document
+      .querySelector(".test10")
+      .insertAdjacentHTML("afterbegin", data[4][0]["temperature_imperial"]);
+    document
+      .querySelector(".test11")
+      .insertAdjacentHTML("afterbegin", data[5][0]["temperature_imperial"]);
+    document
+      .querySelector(".direction")
+      .insertAdjacentHTML("afterend", data[0][0]["wind_direction_english"]);
+    document
+      .querySelector(".wind")
+      .insertAdjacentHTML("afterend", data[0][0]["wind_speed_imperial"]);
+    console.log(data);
+  });
+}
+
+makeAPICall();

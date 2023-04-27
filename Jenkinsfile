@@ -38,7 +38,7 @@ pipeline {
     stage('Kubernetes') {
       steps {
         withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'AWS', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
-          sh "aws eks update-kubeconfig --region us-east-1 --name arn:aws:eks:us-east-1:782863115905:cluster/teamDC-eksCluster"
+          sh "aws eks update-kubeconfig --region us-east-1 --name 'arn:aws:eks:us-east-1:782863115905:cluster/teamDC-eksCluster'"
           script{
             try{
               sh "kubectl create namespace ${namespace}"

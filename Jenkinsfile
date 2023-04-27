@@ -48,7 +48,7 @@ pipeline {
             }
           } 
           sh "kubectl apply -f deployment.yaml -n ${namespace}"
-          sh "kubectl -n ${namespace} rollout restart deployment flaskcontainer"
+          sh "kubectl -n ${namespace} rollout restart deployment teamdc-project"
         }
       }
     }

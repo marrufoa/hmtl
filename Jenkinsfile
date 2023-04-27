@@ -2,7 +2,6 @@ pipeline {
   environment {
     registry = 'kal1bur/project3'
     registryCredentials = 'docker'
-    cluster_name = 'arn:aws:eks:us-east-1:782863115905:cluster/teamDC-eksCluster'
     namespace = 'default'
   }
   agent {
@@ -39,7 +38,7 @@ pipeline {
     stage('Kubernetes') {
       steps {
         withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'AWS', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
-          sh "aws eks update-kubeconfig --region us-east-1 --name ${cluster_name}"
+          sh "aws eks update-kubeconfig --region us-east-1 --name arn:aws:eks:us-east-1:782863115905:cluster/teamDC-eksCluster"
           script{
             try{
               sh "kubectl create namespace ${namespace}"
